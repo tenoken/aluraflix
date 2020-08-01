@@ -4,7 +4,7 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 
 function CadastroCategoria() {
-
+    //teste
     const valoresIniciais = {
         nome: '',
         descricao: '',
