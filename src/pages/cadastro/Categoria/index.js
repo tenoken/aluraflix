@@ -33,7 +33,7 @@ function CadastroCategoria() {
 
     useEffect(() => {
 
-      let URL = "https://aluraflix-tenoken2.herokuapp.com";
+      let URL = "https://aluraflix-tenoken3.herokuapp.com";
 
       if(window.location.href.includes('localhost')) 
         URL = 'http://localhost:8080/categorias'; 
