@@ -33,34 +33,22 @@ function CadastroCategoria() {
 
     useEffect(() => {
 
-      const URL_TOP = "http://localhost:8080/categorias";
+      let URL = "https://aluraflix-tenoken.herokuapp.com";
 
-      fetch(URL_TOP)
-        .then(async (respostaDoServidor) => {
-          const resposta = await respostaDoServidor.json();
-          setCategorias([
-            ...resposta,
-          ]);
-        });
+      if(window.location.href.includes('localhost')) 
+        URL = 'http://localhost:8080/categorias'; 
 
-      // setTimeout(() => {
-      //   setCategorias([
-      //     ...categorias,
-      //     {
-      //       "id": "1",
-      //       "nome": "Front-End",
-      //       "descricao": "Uma categoria bacanuda",
-      //       "cor": "#cbd1ff"
-      //   },
-      //   {
-      //       "id": "2",
-      //       "nome": "Back-End",
-      //       "descricao": "Uma categoria bacanuda",
-      //       "cor": "#cbd1ff"
-      //   }
-      // ])        
-      // }, 4 * 1000)
-    },[])
+        fetch(URL)
+         .then(async (respostaDoServer) =>{
+          if(respostaDoServer.ok) {
+            const resposta = await respostaDoServer.json();
+            setCategorias(resposta);
+            return; 
+          }
+          throw new Error('Não foi possível pegar os dados');
+         })
+ 
+    }, []);
 
     return(
         <PageDefault>
@@ -136,8 +124,8 @@ function CadastroCategoria() {
         <ul>
             {categorias.map((categoria) => {
                 return(
-                    <li key={`${categoria.nome}`}>
-                        {categoria.nome}
+                    <li key={`${categoria.titulo}`}>
+                        {categoria.titulo}
                     </li>
                 )
             })}
